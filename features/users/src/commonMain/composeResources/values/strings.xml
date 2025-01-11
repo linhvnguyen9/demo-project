@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="users_list_title">Github Users</string>
+    <string name="users_detail_title">Users Details</string>
+    <string name="users_detail_follower">Follower</string>
+    <string name="users_detail_following">Following</string>
+</resources>
