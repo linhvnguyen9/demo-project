@@ -4,4 +4,7 @@
     <string name="users_detail_title">Users Details</string>
     <string name="users_detail_follower">Follower</string>
     <string name="users_detail_following">Following</string>
+    <string name="users_detail_location_content_description">Location</string>
+    <string name="users_detail_location_no_location">No location set</string>
+    <string name="user_card_avatar_content_description">Avatar of %1$s</string>
 </resources>

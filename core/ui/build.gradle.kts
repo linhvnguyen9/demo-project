@@ -47,3 +47,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_21
     }
 }
+
+compose.resources { // Make common strings public
+    publicResClass = true
+}

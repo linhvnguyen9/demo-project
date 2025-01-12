@@ -25,6 +25,7 @@ kotlin {
             dependencies {
                 implementation(project(":core:navigation"))
                 implementation(project(":core:ui"))
+                implementation(project(":core:domain"))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -39,6 +40,14 @@ kotlin {
                 implementation(libs.kotlinx.serialization.json)
 
                 implementation(libs.lifecycle.viewmodel.compose)
+
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewmodel)
+                implementation(libs.koin.compose.viewmodel.navigation)
+
+                implementation(libs.coil.compose)
+                implementation(libs.coil.network.ktor3)
             }
         }
     }
@@ -46,6 +55,7 @@ kotlin {
 
 android {
     namespace = "com.linh.features.users"
+    compileSdkVersion = libs.versions.android.compileSdkVersion.get()
 
     defaultConfig {
         minSdk = libs.versions.android.minSdk.get().toInt()

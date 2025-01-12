@@ -38,6 +38,8 @@ kotlin {
             implementation(project(":features:users"))
             implementation(project(":core:navigation"))
             implementation(project(":core:ui"))
+            implementation(project(":core:data"))
+            implementation(project(":core:domain"))
 
             implementation(compose.runtime)
             implementation(compose.foundation)
@@ -49,6 +51,8 @@ kotlin {
             implementation(libs.androidx.lifecycle.runtime.compose)
 
             implementation(libs.navigation.compose)
+
+            implementation(libs.koin.core)
         }
     }
 }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <resources>
     <string name="all_back_content_description">Back</string>
+    <string name="all_unknown_error">An unknown error occurred. Please try again later</string>
 </resources>
