@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.linh.core.domain.model.user.User
-import com.linh.core.ui.DemoAppTopAppBar
+import com.linh.core.ui.components.DemoAppTopAppBar
 import com.linh.core.ui.theme.spacing
 import com.linh.features.users.presentation.ui.UserCard
 import demoproject.features.users.generated.resources.Res

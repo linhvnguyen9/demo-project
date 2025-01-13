@@ -6,8 +6,10 @@ import com.linh.core.data.repository.di.dataRepositoryModule
 import com.linh.core.domain.di.domainModule
 import com.linh.features.users.presentation.di.featureUsersModule
 import org.koin.core.context.startKoin
+import org.koin.dsl.KoinAppDeclaration
 
-fun initKoin() = startKoin {
+fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
+    appDeclaration()
     modules(appModule)
 }
 

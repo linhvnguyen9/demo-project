@@ -2,4 +2,5 @@
 <resources>
     <string name="all_back_content_description">Back</string>
     <string name="all_unknown_error">An unknown error occurred. Please try again later</string>
+    <string name="all_retry">Retry</string>
 </resources>

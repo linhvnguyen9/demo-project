@@ -12,13 +12,5 @@ class UsersListViewModel(
     private val getUsersUseCase: GetUsersUseCase
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(UsersListUiState(emptyList()))
-    val uiState: StateFlow<UsersListUiState> = _uiState.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            val users = getUsersUseCase()
-            _uiState.value = UsersListUiState(users)
-        }
-    }
+    val usersPaged = getUsersUseCase()
 }

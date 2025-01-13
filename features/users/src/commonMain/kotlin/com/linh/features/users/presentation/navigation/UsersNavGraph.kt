@@ -29,7 +29,7 @@ fun NavGraphBuilder.usersNavGraph(navController: NavController, onNavigateBack: 
             val viewModel = koinViewModel<UsersListViewModel>()
 
             UsersListScreen(
-                viewModel.uiState.collectAsStateWithLifecycle().value,
+                viewModel.usersPaged,
                 onBackPressed = {
                     onNavigateBack()
                 },

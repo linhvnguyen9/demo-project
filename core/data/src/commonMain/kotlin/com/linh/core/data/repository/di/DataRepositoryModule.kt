@@ -5,5 +5,5 @@ import com.linh.core.domain.repository.user.UserRepository
 import org.koin.dsl.module
 
 val dataRepositoryModule = module {
-    factory<UserRepository> { UserRepositoryImpl(get()) }
+    factory<UserRepository> { UserRepositoryImpl(get(), get(), get()) }
 }

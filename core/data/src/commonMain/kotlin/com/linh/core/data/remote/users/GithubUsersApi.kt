@@ -1,5 +1,6 @@
 package com.linh.core.data.remote.users
 
+import com.linh.core.data.remote.users.response.GithubUserResponse
 import de.jensklingenberg.ktorfit.http.GET
 import de.jensklingenberg.ktorfit.http.Path
 import de.jensklingenberg.ktorfit.http.Query

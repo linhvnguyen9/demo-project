@@ -4,6 +4,7 @@ plugins {
     kotlin("plugin.serialization")
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -35,12 +36,16 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.core)
 
                 implementation(libs.koin.core)
+
+                implementation(libs.paging.common)
+                implementation(libs.sqldelight.paging3)
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.kotlinx.coroutines.android)
+                implementation(libs.sqldelight.android.driver)
             }
         }
         val iosX64Main by getting
@@ -53,6 +58,9 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation(libs.ktor.client.darwin)
+                implementation(libs.sqldelight.native.driver)
+                implementation(libs.stately.isolate)
+                implementation(libs.stately.iso.collections)
             }
         }
     }
@@ -69,5 +77,17 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
+    }
+    dependencies {
+        debugImplementation(libs.chucker.library)
+        releaseImplementation(libs.chucker.library.no.op)
+    }
+}
+
+sqldelight {
+    databases {
+        create("DemoProjectDatabase") {
+            packageName.set("com.linh.demoproject")
+        }
     }
 }

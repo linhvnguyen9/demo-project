@@ -1,8 +1,10 @@
 package com.linh.core.domain.repository.user
 
+import app.cash.paging.PagingData
 import com.linh.core.domain.model.user.User
+import kotlinx.coroutines.flow.Flow
 
 interface UserRepository {
-    suspend fun getUsers(): List<User>
+    fun getUsersPaged(): Flow<PagingData<User>>
     suspend fun getUserDetail(username: String): Result<User>
 }

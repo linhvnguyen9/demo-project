@@ -1,16 +1,21 @@
 package com.linh.core.data.remote.di
 
+import com.linh.core.data.remote.users.UsersRemoteDataSource
+import com.linh.core.data.remote.users.UsersRemoteDataSourceImpl
 import com.linh.core.data.remote.users.createGithubUsersApi
 import de.jensklingenberg.ktorfit.Ktorfit
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val dataRemoteModule = module {
+    includes(dataRemotePlatformSpecificModule())
+
     single {
-        HttpClient {
+        HttpClient(engine = get<HttpClientEngine>()) {
             install(ContentNegotiation) {
                 json(
                     Json {
@@ -31,6 +36,9 @@ val dataRemoteModule = module {
     }
     single {
         get<Ktorfit>().createGithubUsersApi()
+    }
+    factory<UsersRemoteDataSource> {
+        UsersRemoteDataSourceImpl(get())
     }
 }
 

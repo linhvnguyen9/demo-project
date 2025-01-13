@@ -1,4 +1,4 @@
-package com.linh.core.ui
+package com.linh.core.ui.components
 
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
