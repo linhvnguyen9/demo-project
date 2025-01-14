@@ -6,4 +6,6 @@ expect class DatabaseDriverFactory {
     fun createDriver(): SqlDriver
 }
 
+expect fun createInMemorySqlDriver(): SqlDriver
+
 internal const val DATABASE_NAME = "demoprojectdatabase.db"

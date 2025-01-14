@@ -30,7 +30,10 @@ coroutines = "1.9.0"
 pagingCommon = "3.3.0-alpha02-0.5.1"
 sqldelight = "2.0.2"
 statelyIsolate = "2.0.5"
-
+kotlinx-coroutines = "1.9.0"
+mockk = "1.12.4" #Using older version as 1.12.5 has issue with mocking kotlin.Result https://github.com/mockk/mockk/issues/867
+mokkery = "2.6.1"
+turbine = "1.2.0"
 
 [libraries]
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
@@ -68,13 +71,19 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 paging-common = { module = "app.cash.paging:paging-common", version.ref = "pagingCommon" }
 paging-compose-common = { module = "app.cash.paging:paging-compose-common", version.ref = "pagingCommon" }
+paging-testing = { module = "app.cash.paging:paging-testing", version.ref = "pagingCommon" }
 sqldelight-runtime = { module = "app.cash.sqldelight:runtime", version.ref = "sqldelight" }
 sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 sqldelight-native-driver = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 sqldelight-android-driver = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 sqldelight-paging3 = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelight" }
+sqldelight-sqlite-driver = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 stately-iso-collections = { module = "co.touchlab:stately-iso-collections", version.ref = "statelyIsolate" }
 stately-isolate = { module = "co.touchlab:stately-isolate", version.ref = "statelyIsolate" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk_common = { module = "io.mockk:mockk-common", version.ref = "mockk" }
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -86,3 +95,4 @@ jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrains
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
+mokkery = { id = "dev.mokkery", version.ref = "mokkery" }

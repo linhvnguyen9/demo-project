@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization")
+    alias(libs.plugins.mokkery)
+    kotlin("plugin.allopen") version "2.1.0"
 }
 
 kotlin {
@@ -21,6 +23,8 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
+                implementation(project(":core:common-test"))
+
                 implementation(libs.kotlinx.serialization.json)
 
                 implementation(libs.koin.core)
@@ -29,6 +33,10 @@ kotlin {
 
                 implementation(libs.paging.common)
             }
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
         }
     }
 }
@@ -45,4 +53,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_21
         targetCompatibility = JavaVersion.VERSION_21
     }
+}
+
+allOpen {
+    annotation("com.linh.core.common_test.OpenForMokkery")
 }

@@ -33,7 +33,7 @@ internal class UserRepositoryImpl(
                 pagingRemoteKeyLocalDataSource = pagingRemoteKeyLocalDataSource
             )
         ) {
-            usersLocalDataSource.getUsers()
+            usersLocalDataSource.getUsersPaged()
         }.flow.map { pagingData ->
             pagingData.map { it.toUser() }
         }

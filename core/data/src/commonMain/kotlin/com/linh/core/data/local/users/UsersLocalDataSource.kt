@@ -6,5 +6,6 @@ import com.linh.demoproject.UserEntity
 
 internal interface UsersLocalDataSource {
     fun saveUsers(users: List<User>)
-    fun getUsers(): PagingSource<Int, UserEntity>
+    fun getUsersPaged(): PagingSource<Int, UserEntity>
+    fun getUsers(): List<UserEntity>
 }

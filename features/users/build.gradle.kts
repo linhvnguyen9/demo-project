@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     kotlin("plugin.serialization")
+    alias(libs.plugins.mokkery)
 }
 
 kotlin {
@@ -52,6 +53,13 @@ kotlin {
                 implementation(libs.paging.common)
                 implementation(libs.paging.compose.common)
             }
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.koin.test)
+            implementation(libs.paging.testing)
+            implementation(libs.turbine)
         }
     }
 }

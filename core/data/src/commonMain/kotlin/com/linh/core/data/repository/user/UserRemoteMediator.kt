@@ -8,10 +8,7 @@ import com.linh.core.data.local.paging.DataType
 import com.linh.core.data.local.paging.PagingRemoteKeyLocalDataSource
 import com.linh.core.data.local.users.UsersLocalDataSource
 import com.linh.core.data.remote.users.UsersRemoteDataSource
-import com.linh.core.data.remote.utils.safeApiCall
-import com.linh.core.data.repository.user.mapper.toUser
 import com.linh.core.data.repository.user.mapper.toUsers
-import com.linh.core.domain.model.user.User
 import com.linh.demoproject.RemoteKeyEntity
 import com.linh.demoproject.UserEntity
 

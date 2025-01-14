@@ -29,7 +29,7 @@ internal class UsersLocalDataSourceImpl(private val database: DemoProjectDatabas
         }
     }
 
-    override fun getUsers(): PagingSource<Int, UserEntity> {
+    override fun getUsersPaged(): PagingSource<Int, UserEntity> {
         return QueryPagingSource(
             countQuery = dbQuery.countUsers(),
             transacter = dbQuery,
@@ -38,6 +38,10 @@ internal class UsersLocalDataSourceImpl(private val database: DemoProjectDatabas
                 dbQuery.getUsersPaged(limit, offset, ::mapUser)
             }
         )
+    }
+
+    override fun getUsers(): List<UserEntity> {
+        return dbQuery.getUsers(::mapUser).executeAsList()
     }
 
     private fun mapUser(

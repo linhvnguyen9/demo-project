@@ -3,7 +3,7 @@ package com.linh.core.data.local.paging
 import com.linh.demoproject.DemoProjectDatabase
 import com.linh.demoproject.RemoteKeyEntity
 
-class PagingRemoteKeyLocalDataSourceImpl(private val database: DemoProjectDatabase) :
+internal class PagingRemoteKeyLocalDataSourceImpl(private val database: DemoProjectDatabase) :
     PagingRemoteKeyLocalDataSource {
     private val dbQuery = database.demoProjectDatabaseQueries
 

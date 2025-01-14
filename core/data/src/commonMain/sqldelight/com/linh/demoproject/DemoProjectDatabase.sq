@@ -21,6 +21,9 @@ SELECT * FROM UserEntity ORDER BY id ASC LIMIT :limit OFFSET :offset;
 countUsers:
 SELECT COUNT(*) FROM UserEntity;
 
+getUsers:
+SELECT * FROM UserEntity;
+
 getUserByLogin:
 SELECT * FROM UserEntity WHERE login = ?;
 

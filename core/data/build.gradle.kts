@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.ksp)
     alias(libs.plugins.ktorfit)
     alias(libs.plugins.sqldelight)
+    alias(libs.plugins.mokkery)
 }
 
 kotlin {
@@ -46,6 +47,8 @@ kotlin {
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.kotlinx.coroutines.android)
                 implementation(libs.sqldelight.android.driver)
+                implementation(libs.sqldelight.sqlite.driver)
+                implementation(libs.kotlinx.coroutines.core)
             }
         }
         val iosX64Main by getting
@@ -62,6 +65,17 @@ kotlin {
                 implementation(libs.stately.isolate)
                 implementation(libs.stately.iso.collections)
             }
+        }
+        androidUnitTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.mockk.common)
+            implementation(libs.mockk)
+        }
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.koin.test)
+            implementation(libs.paging.testing)
         }
     }
 }
@@ -81,6 +95,9 @@ android {
     dependencies {
         debugImplementation(libs.chucker.library)
         releaseImplementation(libs.chucker.library.no.op)
+    }
+    testOptions {
+        unitTests.isReturnDefaultValues = true // Set this to true to fix issue Method isLoggable in android.util.Log not mocked for Paging tests
     }
 }
 

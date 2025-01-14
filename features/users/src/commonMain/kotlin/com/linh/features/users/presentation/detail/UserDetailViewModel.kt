@@ -21,7 +21,7 @@ class UserDetailViewModel(
 
     init {
         viewModelScope.launch {
-            val user = getUserDetailUseCase(username).fold(
+            getUserDetailUseCase(username).fold(
                 onSuccess = {
                     _uiState.value = UserDetailUiState.Data(it)
                 },
