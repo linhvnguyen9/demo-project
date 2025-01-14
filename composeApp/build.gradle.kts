@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.kover)
 }
 
 kotlin {
@@ -54,6 +55,31 @@ kotlin {
             implementation(libs.navigation.compose)
 
             implementation(libs.koin.core)
+        }
+    }
+}
+
+kover {
+    dependencies {
+        kover(project(":features:users"))
+        kover(project(":core:data"))
+        kover(project(":core:domain"))
+    }
+
+    reports {
+        filters {
+            includes {
+                classes("*ViewModel")
+                classes("*LocalDataSourceImpl")
+                classes("*RemoteDataSourceImpl")
+                classes("*RemoteMediator")
+                classes("*RepositoryImpl")
+                classes("*MapperKt")
+                classes("*UseCase")
+            }
+        }
+        total {
+            // configuring report tasks
         }
     }
 }

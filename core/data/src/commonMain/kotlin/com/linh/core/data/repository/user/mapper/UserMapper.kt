@@ -18,6 +18,18 @@ fun GithubUserResponse.toUser() = User(
     bio = bio
 )
 
+fun GithubUserResponse.toUserEntity() = UserEntity(
+    id = id ?: 0L,
+    login = login.orEmpty(),
+    name = name.orEmpty(),
+    avatar_url = avatarUrl.orEmpty(),
+    html_url = htmlUrl.orEmpty(),
+    location = location.orEmpty(),
+    followers = followers,
+    following = following,
+    bio = bio
+)
+
 fun UserEntity.toUser() = User(
     id = id,
     login = login,

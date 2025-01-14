@@ -7,6 +7,9 @@ import app.cash.sqldelight.paging3.QueryPagingSource
 import com.linh.core.domain.model.user.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
+import kotlinx.coroutines.flow.Flow
+import app.cash.sqldelight.coroutines.asFlow
+import kotlinx.coroutines.flow.map
 
 internal class UsersLocalDataSourceImpl(private val database: DemoProjectDatabase): UsersLocalDataSource {
     private val dbQuery = database.demoProjectDatabaseQueries
@@ -42,6 +45,24 @@ internal class UsersLocalDataSourceImpl(private val database: DemoProjectDatabas
 
     override fun getUsers(): List<UserEntity> {
         return dbQuery.getUsers(::mapUser).executeAsList()
+    }
+
+    override fun getUserDetail(username: String): Flow<UserEntity?> {
+        return dbQuery.getUserByLogin(username, ::mapUser).asFlow().map { it.executeAsOneOrNull() }
+    }
+
+    override fun saveUserDetail(userEntity: UserEntity) {
+        dbQuery.insertUser(
+            id = userEntity.id,
+            login = userEntity.login,
+            avatar_url = userEntity.avatar_url,
+            html_url = userEntity.html_url,
+            name = userEntity.name,
+            location = userEntity.location,
+            followers = userEntity.followers,
+            following = userEntity.following,
+            bio = userEntity.bio
+        )
     }
 
     private fun mapUser(

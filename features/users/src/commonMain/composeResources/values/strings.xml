@@ -7,5 +7,8 @@
     <string name="users_detail_following">Following</string>
     <string name="users_detail_location_content_description">Location</string>
     <string name="users_detail_location_no_location">No location set</string>
+    <string name="users_detail_blog">Blog</string>
+    <string name="users_detail_bio_no_bio">No bio set</string>
     <string name="user_card_avatar_content_description">Avatar of %1$s</string>
+    <string name="users_detail_error_fetching_latest">There was an error fetching the latest data</string>
 </resources>

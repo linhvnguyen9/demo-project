@@ -4,6 +4,8 @@ import androidx.paging.PagingSource
 import com.linh.core.data.utils.startTestKoin
 import com.linh.core.data.utils.stopTestKoin
 import com.linh.core.domain.model.user.User
+import com.linh.demoproject.UserEntity
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
@@ -15,6 +17,17 @@ import kotlin.test.assertTrue
 
 class UsersLocalDataSourceImplTest : KoinComponent {
     private val sut: UsersLocalDataSourceImpl by inject()
+    private val userDetail = UserEntity(
+        id = 1,
+        login = "username1",
+        name = "name1",
+        avatar_url = "avatar_url1",
+        html_url = "html_url1",
+        location = "location1",
+        followers = 10,
+        following = 5,
+        bio = "bio1"
+    )
 
     @BeforeTest
     fun setup() {
@@ -77,5 +90,41 @@ class UsersLocalDataSourceImplTest : KoinComponent {
         assertTrue(loadResult is PagingSource.LoadResult.Page)
         assertEquals(1, loadResult.data.size)
         assertEquals(user2.login, loadResult.data[0].login)
+    }
+
+    @Test
+    fun `Given user details When saving a user Then data is saved and retrieved successfully`() = runTest {
+        sut.saveUserDetail(userDetail)
+        val result = sut.getUsers()
+
+        assertEquals(1, result.size)
+        assertEquals(userDetail, result[0])
+    }
+
+    @Test
+    fun `Given saved user details When retrieving by username Then correct user is returned`() = runTest {
+        sut.saveUserDetail(userDetail)
+
+        val result = sut.getUserDetail("username1").first()
+
+        assertEquals(userDetail, result)
+    }
+
+    @Test
+    fun `Given no saved user details When retrieving by username Then null is returned`() = runTest {
+        val result = sut.getUserDetail("nonexistent_user").first()
+
+        assertEquals(null, result)
+    }
+
+    @Test
+    fun `Given multiple users When retrieving by username Then correct user is returned`() = runTest {
+        val userDetail2 = userDetail.copy(id = 2, login = "username2")
+        sut.saveUserDetail(userDetail)
+        sut.saveUserDetail(userDetail2)
+
+        val result = sut.getUserDetail("username2").first()
+
+        assertEquals(userDetail2, result)
     }
 }

@@ -21,17 +21,20 @@ import org.jetbrains.compose.resources.stringResource
 fun DemoAppTopAppBar(
     title: String,
     onNavigateBack: () -> Unit,
+    isBackEnabled: Boolean = true,
     modifier: Modifier = Modifier
 ) {
     CenterAlignedTopAppBar(
         title = { Text(text = title, style = MaterialTheme.typography.h5) },
         navigationIcon = {
-            IconButton(onNavigateBack) {
-                Icon(
-                    Icons.AutoMirrored.Filled.ArrowBack,
-                    // Set content description so users using screen readers can know what this button does
-                    contentDescription = stringResource(Res.string.all_back_content_description)
-                )
+            if (isBackEnabled) {
+                IconButton(onNavigateBack) {
+                    Icon(
+                        Icons.AutoMirrored.Filled.ArrowBack,
+                        // Set content description so users using screen readers can know what this button does
+                        contentDescription = stringResource(Res.string.all_back_content_description)
+                    )
+                }
             }
         },
         colors = TopAppBarDefaults.topAppBarColors(

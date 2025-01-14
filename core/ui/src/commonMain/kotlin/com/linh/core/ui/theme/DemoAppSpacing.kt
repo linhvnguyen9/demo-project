@@ -5,5 +5,6 @@ import androidx.compose.ui.unit.Dp
 data class DemoAppSpacing(
     val tiny: Dp = SpacingDefaults.tiny,
     val small: Dp = SpacingDefaults.small,
-    val default: Dp = SpacingDefaults.default
+    val default: Dp = SpacingDefaults.default,
+    val medium: Dp = SpacingDefaults.default
 )

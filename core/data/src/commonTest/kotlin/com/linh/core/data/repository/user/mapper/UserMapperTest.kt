@@ -1,8 +1,6 @@
 package com.linh.core.data.repository.user.mapper
 
 import com.linh.core.data.remote.users.response.GithubUserResponse
-import com.linh.core.data.repository.user.mapper.toUser
-import com.linh.core.data.repository.user.mapper.toUsers
 import com.linh.demoproject.UserEntity
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -47,6 +45,50 @@ class UserMapperTest {
         assertEquals("", user.name)
         assertEquals("", user.avatarUrl)
         assertEquals("", user.profileUrl)
+        assertEquals("", user.location)
+        assertEquals(null, user.followers)
+        assertEquals(null, user.following)
+        assertEquals(null, user.bio)
+    }
+
+    @Test
+    fun `Given GithubUserResponse with filled data_When calling toUserEntity_then get correctly mapped result`() {
+        val response = GithubUserResponse(
+            id = 123L,
+            login = "testuser",
+            name = "Test User",
+            avatarUrl = "https://example.com/avatar.jpg",
+            htmlUrl = "https://github.com/testuser",
+            location = "Earth",
+            followers = 100L,
+            following = 50L,
+            bio = "A test user"
+        )
+
+        val user = response.toUserEntity()
+
+        assertEquals(123L, user.id)
+        assertEquals("testuser", user.login)
+        assertEquals("Test User", user.name)
+        assertEquals("https://example.com/avatar.jpg", user.avatar_url)
+        assertEquals("https://github.com/testuser", user.html_url)
+        assertEquals("Earth", user.location)
+        assertEquals(100L, user.followers)
+        assertEquals(50L, user.following)
+        assertEquals("A test user", user.bio)
+    }
+
+    @Test
+    fun `Given GithubUserResponse with null data_When calling toUserEntity_then get correctly mapped result with default values for null`() {
+        val response = GithubUserResponse()
+
+        val user = response.toUserEntity()
+
+        assertEquals(0L, user.id)
+        assertEquals("", user.login)
+        assertEquals("", user.name)
+        assertEquals("", user.avatar_url)
+        assertEquals("", user.html_url)
         assertEquals("", user.location)
         assertEquals(null, user.followers)
         assertEquals(null, user.following)

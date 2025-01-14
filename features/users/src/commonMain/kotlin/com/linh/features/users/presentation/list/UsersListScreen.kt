@@ -49,7 +49,8 @@ internal fun UsersListScreen(
         topBar = {
             DemoAppTopAppBar(
                 title = stringResource(Res.string.users_list_title),
-                onNavigateBack = onBackPressed
+                onNavigateBack = onBackPressed,
+                isBackEnabled = false
             )
         }
     ) { contentPadding ->
@@ -70,7 +71,7 @@ internal fun UsersListScreen(
                         horizontal = MaterialTheme.spacing.default,
                         vertical = MaterialTheme.spacing.small
                     ),
-                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.tiny)
+                    verticalArrangement = Arrangement.spacedBy(MaterialTheme.spacing.small)
                 ) {
                     items(
                         items.itemCount,

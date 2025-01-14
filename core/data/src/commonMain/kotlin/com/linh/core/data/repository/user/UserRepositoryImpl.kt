@@ -12,6 +12,9 @@ import kotlinx.coroutines.flow.Flow
 import app.cash.paging.map
 import com.linh.core.data.local.paging.PagingRemoteKeyLocalDataSource
 import com.linh.core.data.remote.users.UsersRemoteDataSource
+import com.linh.core.data.repository.user.mapper.toUserEntity
+import com.linh.core.domain.repository.utils.Resource
+import com.linh.core.data.repository.utils.networkBoundResource
 import kotlinx.coroutines.flow.map
 
 internal class UserRepositoryImpl(
@@ -39,10 +42,22 @@ internal class UserRepositoryImpl(
         }
     }
 
-    override suspend fun getUserDetail(username: String): Result<User> {
-        return usersRemoteDataSource.getUserDetail(username).map {
-            it.toUser()
-        }
+    override suspend fun getUserDetail(username: String): Flow<Resource<User?>> {
+        return networkBoundResource(
+            query = {
+                usersLocalDataSource.getUserDetail(username)
+            },
+            fetch = { cachedData ->
+                usersRemoteDataSource.getUserDetail(username)
+            },
+            saveFetchResult = { response ->
+                response?.toUserEntity()?.let { usersLocalDataSource.saveUserDetail(it) }
+            },
+            shouldFetch = { cachedData ->
+                true
+            },
+            entityToDomain = { it?.toUser() }
+        )
     }
 
     companion object {

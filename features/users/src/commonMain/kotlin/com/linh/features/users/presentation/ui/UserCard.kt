@@ -38,7 +38,7 @@ fun UserCard(
         colors = CardDefaults.cardColors().copy(
             containerColor = Color.White
         ),
-        elevation = CardDefaults.elevatedCardElevation()
+        elevation = CardDefaults.elevatedCardElevation(defaultElevation = 8.dp)
     ) {
         Row(Modifier.fillMaxWidth().padding(MaterialTheme.spacing.small)) {
             AsyncImage(

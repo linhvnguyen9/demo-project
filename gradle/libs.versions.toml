@@ -34,6 +34,7 @@ kotlinx-coroutines = "1.9.0"
 mockk = "1.12.4" #Using older version as 1.12.5 has issue with mocking kotlin.Result https://github.com/mockk/mockk/issues/867
 mokkery = "2.6.1"
 turbine = "1.2.0"
+kover = "0.9.1"
 
 [libraries]
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
@@ -96,3 +97,4 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit" }
 sqldelight = { id = "app.cash.sqldelight", version.ref = "sqldelight" }
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
+kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

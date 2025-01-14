@@ -1,3 +1,6 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
@@ -6,10 +9,16 @@ plugins {
     alias(libs.plugins.ktorfit)
     alias(libs.plugins.sqldelight)
     alias(libs.plugins.mokkery)
+    alias(libs.plugins.kover)
 }
 
 kotlin {
-    androidTarget()
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_21)
+        }
+    }
 
     listOf(
         iosX64(),
@@ -40,6 +49,7 @@ kotlin {
 
                 implementation(libs.paging.common)
                 implementation(libs.sqldelight.paging3)
+                implementation(libs.sqldelight.coroutines)
             }
         }
         val androidMain by getting {
@@ -76,6 +86,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.test)
             implementation(libs.koin.test)
             implementation(libs.paging.testing)
+            implementation(libs.turbine)
         }
     }
 }

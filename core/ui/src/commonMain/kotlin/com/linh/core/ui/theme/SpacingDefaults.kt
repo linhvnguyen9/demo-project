@@ -6,4 +6,5 @@ data object SpacingDefaults {
     val tiny = 4.dp
     val small = 8.dp
     val default = 16.dp
+    val medium = 24.dp
 }
