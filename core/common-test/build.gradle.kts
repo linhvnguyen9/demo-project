@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.mokkery)
-    kotlin("plugin.allopen") version "2.1.0"
+    kotlin("plugin.allopen") version "2.4.20"
 }
 
 kotlin {

@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     kotlin("plugin.serialization")
     alias(libs.plugins.mokkery)
-    kotlin("plugin.allopen") version "2.1.0"
+    kotlin("plugin.allopen") version "2.4.20"
     alias(libs.plugins.kover)
 }
 
